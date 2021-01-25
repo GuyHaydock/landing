@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Le Wagon - Web Development Sprint</title>
+
+  <!-- Change these Google fonts with your own choice -->
+  <link href="https://fonts.googleapis.com/css?family=Chivo:700|Overpass:400,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style type="text/css">
+.menutitle{
+cursor:pointer;
+margin-bottom: 5px;
+background-color:#ECECFF;
+color:#000000;
+width:140px;
+padding:2px;
+text-align:center;
+font-weight:bold;
+/*/*/border:1px solid #000000;/* */
+}
+
+.submenu{
+margin-bottom: 0.5em;
+}
+</style>
+
+<script type="text/javascript">
+
+/***********************************************
+* Switch Menu script- by Martial B of http://getElementById.com/
+* Modified by Dynamic Drive for format & NS4/IE4 compatibility
+* Visit http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+var persistmenu="yes" //"yes" or "no". Make sure each SPAN content contains an incrementing ID starting at 1 (id="sub1", id="sub2", etc)
+var persisttype="sitewide" //enter "sitewide" for menu to persist across site, "local" for this page only
+
+if (document.getElementById){ //DynamicDrive.com change
+document.write('<style type="text/css">\n')
+document.write('.submenu{display: none;}\n')
+document.write('</style>\n')
+}
+
+function SwitchMenu(obj){
+	if(document.getElementById){
+	var el = document.getElementById(obj);
+	var ar = document.getElementById("masterdiv").getElementsByTagName("span"); //DynamicDrive.com change
+		if(el.style.display != "block"){ //DynamicDrive.com change
+			for (var i=0; i<ar.length; i++){
+				if (ar[i].className=="submenu") //DynamicDrive.com change
+				ar[i].style.display = "none";
+			}
+			el.style.display = "block";
+		}else{
+			el.style.display = "none";
+		}
+	}
+}
+
+function get_cookie(Name) { 
+var search = Name + "="
+var returnvalue = "";
+if (document.cookie.length > 0) {
+offset = document.cookie.indexOf(search)
+if (offset != -1) { 
+offset += search.length
+end = document.cookie.indexOf(";", offset);
+if (end == -1) end = document.cookie.length;
+returnvalue=unescape(document.cookie.substring(offset, end))
+}
+}
+return returnvalue;
+}
+
+function onloadfunction(){
+if (persistmenu=="yes"){
+var cookiename=(persisttype=="sitewide")? "switchmenu" : window.location.pathname
+var cookievalue=get_cookie(cookiename)
+if (cookievalue!="")
+document.getElementById(cookievalue).style.display="block"
+}
+}
+
+function savemenustate(){
+var inc=1, blockid=""
+while (document.getElementById("sub"+inc)){
+if (document.getElementById("sub"+inc).style.display=="block"){
+blockid="sub"+inc
+break
+}
+inc++
+}
+var cookiename=(persisttype=="sitewide")? "switchmenu" : window.location.pathname
+var cookievalue=(persisttype=="sitewide")? blockid+";path=/" : blockid
+document.cookie=cookiename+"="+cookievalue
+}
+
+if (window.addEventListener)
+window.addEventListener("load", onloadfunction, false)
+else if (window.attachEvent)
+window.attachEvent("onload", onloadfunction)
+else if (document.getElementById)
+window.onload=onloadfunction
+
+if (persistmenu=="yes" && document.getElementById)
+window.onunload=savemenustate
+
+</script>
+</head>
+<body>
+	<!-- Banner section -->
+  <div class="banner">
+    <h1>Welcome to Japan!</h1>
+    <p>If this is your first time in Japan, you came to the right place!
+    </p>
+    
+  </div>
+
+  <!-- Cards section -->
+  <div class="container">
+    <h2>Discover our beatiful country</h2>
+
+    <div class="cards">
+      <div class="white-card">
+        <img src="images/caption.jpg" alt="london">
+        <h3>Places</h3>
+        <p>Where can you ask for Information?</p>
+      </div>
+
+      <div class="white-card">
+        <img src="images/caption2.jpg" alt="paris">
+        <h3>Food</h3>
+        <p>Get the best food in Japan!</p>
+      </div>
+
+      <div class="white-card">
+        
+        <h3>Menu</h3>
+        <!-- Menu bar section section -->
+<!-- Keep all menus within masterdiv-->
+<div id="masterdiv">
+
+	<div class="btn-green" class="menutitle" onclick="SwitchMenu('sub1')">Information center</div>
+	<span class="submenu" id="sub1">
+		- <a class="btn-green" href="https://www.gotokyo.org/en/plan/tourist-info-center/index.html">Tokyo</a><br>
+		- <a class="btn-green" href="https://tic.jnto.go.jp/detail.php?id=1227">Osaka</a><br>
+		- <a class="btn-green" href="https://tic.jnto.go.jp/detail.php?id=1219">Kyoto</a><br>
+		- <a class="btn-green" href="https://tic.jnto.go.jp/">other</a>
+	</span>
+
+	<div class="btn-green" class="menutitle" onclick="SwitchMenu('sub2')">Food</div>
+	<span class="submenu" id="sub2">
+		- <a class="btn-green" href="https://www.japan-guide.com/e/e3075.html">Tokyo</a><br>
+		- <a class="btn-green" href="https://migrationology.com/osaka-food-guide-japan/">Osaka</a><br>
+		- <a class="btn-green" href="https://www.ninjafoodtours.com/kyoto-food-guide/">Kyoto</a><br>
+		- <a class="btn-green" href="https://www.japancentre.com/en/pages/156-30-must-try-japanese-foods">other</a>
+	</span>
+
+	<div class="btn-green" class="menutitle" onclick="SwitchMenu('sub3')">Hotel</div>
+	<span class="submenu" id="sub3">
+		- <a class="btn-green" href="https://www.google.com/aclk?sa=L&ai=DChcSEwiEx4yturHuAhVFaioKHU2cAEAYABAAGgJ0bQ&ae=2&sig=AOD64_1d2Yl044XATiYVKZdwKDAzwH1R-w&q&adurl&ved=2ahUKEwiO-ICturHuAhV8KqYKHX42D6AQ0Qx6BAgEEAE">Tokyo</a><br>
+		- <a class="btn-green" href="https://www.expedia.com/Destinations-In-Osaka.d6054125.Hotel-Destinations">Osaka</a><br>
+		- <a class="btn-green" href="https://www.expedia.co.jp/en/Kyoto-Hotels.d6131486.Travel-Guide-Hotels">Kyoto</a><br>
+		- <a class="btn-green" href="https://www.expedia.co.jp/en/Tokyo-Hotels.d179900.Travel-Guide-Hotels">other</a>
+	</span>
+	
+	
+	<span class="submenu" id="sub4">
+		- <a class="btn-green" href="http://www.javascriptkit.com">JavaScript Kit</a><br>
+		- <a class="btn-green" href="http://www.freewarejava.com">Freewarejava</a><br>
+		- <a class="btn-green" href="http://www.cooltext.com">Cool Text</a><br>
+		- <a class="btn-green" href="http://www.google.com">Google.com</a>
+	</span>
+
+	<br>
+	
+
+</div>
+        <h3>  </h3>
+        <p>Jump to see any information</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer section -->
+  <div class="footer">
+    <div class="container">
+      <p>Website made with ❤️ by Guy</p>
+    </div>
+  </div>
+  
+  <!-- Cards section -->
+
+  <!-- Footer section -->
+</body>
+</html>
